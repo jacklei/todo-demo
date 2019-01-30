@@ -1,0 +1,15 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+  app:
+    image: node
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    command: >
+      /bin/sh -c "npm install && node server.js"
