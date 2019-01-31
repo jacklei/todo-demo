@@ -1,0 +1,35 @@
+# Default values for todo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+
+image:
+  repository: 648053780176.dkr.ecr.us-east-1.amazonaws.com/demo/todo
+  tag: latest
+  pullPolicy: Always
+
+service:
+  name: demo-todo
+  type: LoadBalancer
+  externalPort: 80
+  internalPort: 80
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+mongodb:
+  mongodbRootPassword: root
+  mongodbUsername: todouser
+  mongodbPassword: todopass
+  mongodbDatabase: todo
+  persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 8Gi
+
