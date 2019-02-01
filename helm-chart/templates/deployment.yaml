@@ -20,9 +20,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: DD_AGENT_SERVICE_HOST
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
         - name: MONGODB_HOST
           value: {{ template "mongodb.fullname" . }}
         - name: MONGODB_PORT
@@ -60,4 +60,4 @@ spec:
           periodSeconds: 5
           timeoutSeconds: 1
         resources:
-{{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.resources | indent 10 }}
