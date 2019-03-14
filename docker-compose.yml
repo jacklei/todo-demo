@@ -3,23 +3,20 @@ services:
   mongo:
     image: mongo
     environment:
-      - MONGODB_HOST=mongo
-      - MONGODB_DATABASE=todo
-      - MONGODB_USERNAME=todouser
-      - MONGODB_PASSWORD=todopass
+      MONGO_INITDB_DATABASE: todo
+      MONGO_INITDB_ROOT_USERNAME: todouser
+      MONGO_INITDB_ROOT_PASSWORD: todopass
+    ports:
+      - "27017:27017"
   app:
-    image: 648053780176.dkr.ecr.us-east-1.amazonaws.com/demo/todo:latest
+    build: ./
     environment:
-      - MONGODB_HOST=mongo
-      - MONGODB_DATABASE=todo
-      - MONGODB_USERNAME=todouser
-      - MONGODB_PASSWORD=todopass
-    # working_dir: /app
-    # volumes:
-    #   - ./:/app
+      MONGODB_HOST: mongo
+      MONGODB_DATABASE: todo
+      MONGODB_USERNAME: todouser
+      MONGODB_PASSWORD: todopass
     ports:
       - "8080:80"
-    # depends_on:
-    #   - mongo
-    # command: >
-    #   /bin/sh -c "npm install && node server.js"
+    depends_on:
+      - mongo
+      

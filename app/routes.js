@@ -1,3 +1,5 @@
+var path = require('path');
+
 var Todo = require('./models/todo');
 
 function getTodos(res) {
@@ -41,6 +43,8 @@ module.exports = function (app) {
     });
 
     app.get('*', function (req, res) {
-        res.sendFile('../public/index.html'); 
+        res.sendFile('index.html', {
+            root: path.resolve(__dirname, '../public')
+        }); 
     });
 };

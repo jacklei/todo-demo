@@ -1,8 +1,8 @@
 // set up ======================================================================
-const tracer = require('dd-trace').init({
-    hostname: process.env.DD_AGENT_SERVICE_HOST, 
-    service: 'datadog-apm-demo-app'
-  });
+// const tracer = require('dd-trace').init({
+//     hostname: process.env.DD_AGENT_SERVICE_HOST, 
+//     service: 'datadog-apm-demo-app'
+//   });
 var express = require('express');
 var app = express(); 						// create our app w/ express
 var mongoose = require('mongoose'); 				// mongoose for mongodb
@@ -13,9 +13,8 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // configuration ===============================================================
-mongoose.connect('mongodb://' + database.host + '/' + database.db, {
-  user: database.user,
-  pass: database.pass,
+mongoose.connect('mongodb://' + database.user + ':' + database.pass + '@' + database.host + ':' + database.port +'/' + database.db + '?authSource=admin', {
+  useNewUrlParser: true,
 }); // Connect to local MongoDB instance. A remoteUrl is also available (modulus.io)
 app.use(express.static('./public')); 		// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console

@@ -7,9 +7,9 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "dd-trace": "^0.7.3",
-    "express": "^4.10.8",
+    "express": "^4.16.4",
     "method-override": "^2.3.10",
-    "mongoose": "4.10.8",
+    "mongoose": "^5.4.19",
     "morgan": "^1.9.0"
   }
 }
